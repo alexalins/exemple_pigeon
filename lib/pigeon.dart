@@ -12,15 +12,18 @@ class Book {
   Book({
     this.title,
     this.author,
+    this.image,
   });
 
   String? title;
   String? author;
+  String? image;
 
   Object encode() {
     final Map<Object?, Object?> pigeonMap = <Object?, Object?>{};
     pigeonMap['title'] = title;
     pigeonMap['author'] = author;
+    pigeonMap['image'] = image;
     return pigeonMap;
   }
 
@@ -29,6 +32,7 @@ class Book {
     return Book(
       title: pigeonMap['title'] as String?,
       author: pigeonMap['author'] as String?,
+      image: pigeonMap['image'] as String?,
     );
   }
 }

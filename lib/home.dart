@@ -24,21 +24,35 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Exemple Pigeon"),
-        centerTitle: true,
-        backgroundColor: Colors.red,
-      ),
-      body: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(8),
-        child: ElevatedButton(
-            child: Text("Fecth Book"),
-            onPressed: _getBook,
-            style: ElevatedButton.styleFrom(
-              primary: Colors.red,
-            )),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Exemple Pigeon"),
+          centerTitle: true,
+          backgroundColor: Colors.red,
+        ),
+        body: Column(children: [
+          Expanded(
+              child: PageView.builder(
+            itemCount: _books.length,
+            itemBuilder: (context, index) {
+              final book = _books[index];
+              return Column(
+                children: [
+                  Expanded(
+                      child: Image.network(book.image!, fit: BoxFit.cover)),
+                  const SizedBox(height: 8),
+                  Text(book.title!,
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold))
+                ],
+              );
+            },
+          )),
+          ElevatedButton(
+              child: Text("Fecth Book"),
+              onPressed: _getBook,
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ))
+        ]));
   }
 }
