@@ -38,22 +38,26 @@ static id GetNullableObjectAtIndex(NSArray* array, NSInteger key) {
 
 @implementation Book
 + (instancetype)makeWithTitle:(nullable NSString *)title
-    author:(nullable NSString *)author {
+    author:(nullable NSString *)author
+    image:(nullable NSString *)image {
   Book* pigeonResult = [[Book alloc] init];
   pigeonResult.title = title;
   pigeonResult.author = author;
+  pigeonResult.image = image;
   return pigeonResult;
 }
 + (Book *)fromMap:(NSDictionary *)dict {
   Book *pigeonResult = [[Book alloc] init];
   pigeonResult.title = GetNullableObject(dict, @"title");
   pigeonResult.author = GetNullableObject(dict, @"author");
+  pigeonResult.image = GetNullableObject(dict, @"image");
   return pigeonResult;
 }
 - (NSDictionary *)toMap {
   return @{
     @"title" : (self.title ?: [NSNull null]),
     @"author" : (self.author ?: [NSNull null]),
+    @"image" : (self.image ?: [NSNull null]),
   };
 }
 @end

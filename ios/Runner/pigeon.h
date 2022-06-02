@@ -12,9 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Book : NSObject
 + (instancetype)makeWithTitle:(nullable NSString *)title
-    author:(nullable NSString *)author;
+    author:(nullable NSString *)author
+    image:(nullable NSString *)image;
 @property(nonatomic, copy, nullable) NSString * title;
 @property(nonatomic, copy, nullable) NSString * author;
+@property(nonatomic, copy, nullable) NSString * image;
 @end
 
 /// The codec used by BookApi.

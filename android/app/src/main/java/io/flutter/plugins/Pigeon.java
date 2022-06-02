@@ -36,6 +36,12 @@ public class Pigeon {
       this.author = setterArg;
     }
 
+    private @Nullable String image;
+    public @Nullable String getImage() { return image; }
+    public void setImage(@Nullable String setterArg) {
+      this.image = setterArg;
+    }
+
     public static final class Builder {
       private @Nullable String title;
       public @NonNull Builder setTitle(@Nullable String setterArg) {
@@ -47,10 +53,16 @@ public class Pigeon {
         this.author = setterArg;
         return this;
       }
+      private @Nullable String image;
+      public @NonNull Builder setImage(@Nullable String setterArg) {
+        this.image = setterArg;
+        return this;
+      }
       public @NonNull Book build() {
         Book pigeonReturn = new Book();
         pigeonReturn.setTitle(title);
         pigeonReturn.setAuthor(author);
+        pigeonReturn.setImage(image);
         return pigeonReturn;
       }
     }
@@ -58,6 +70,7 @@ public class Pigeon {
       Map<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("title", title);
       toMapResult.put("author", author);
+      toMapResult.put("image", image);
       return toMapResult;
     }
     static @NonNull Book fromMap(@NonNull Map<String, Object> map) {
@@ -66,6 +79,8 @@ public class Pigeon {
       pigeonResult.setTitle((String)title);
       Object author = map.get("author");
       pigeonResult.setAuthor((String)author);
+      Object image = map.get("image");
+      pigeonResult.setImage((String)image);
       return pigeonResult;
     }
   }
